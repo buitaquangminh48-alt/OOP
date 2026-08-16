@@ -16,15 +16,15 @@ public: // Set to public for now so external code can access it
 
 // 1. Attributes
 
-std::string ten;
+std::string name;
 
 int pin;
 
 // 2. Behaviors
 
-void gioiThieu() {
+void intro() {
 
-std::cout << "I am " << ten << ", battery remaining: " << pin <<
+std::cout << "I am " << name << ", battery remaining: " << pin <<
 
 "%\n";
 
@@ -36,11 +36,11 @@ int main() {
 
 Robot r1; // Create object r1 from the Robot blueprint
 
-r1.ten = "T-800"; // Assign data
+r1.name = "T-800"; // Assign data
 
 r1.pin = 100;
 
-r1.gioiThieu(); // Call function: "I am T-800, battery remaining: 100%"
+r1.intro(); // Call function: "I am T-800, battery remaining: 100%"
 
 }
 
@@ -156,29 +156,29 @@ class Robot {
 
 private:
 
-int sucManh = 50;
+int power = 50;
 
 public:
 
 _// Declare the "Doctor" function as a friend of Robot_
 
-friend void bacSiKiemTra(Robot r);
+friend void doctorCheck(Robot r);
 
 _// Define the addition operator (+): When two robots are added, sum their power levels_
 
-int operator+(const Robot& khac) {
+int operator+(const Robot& diff) {
 
-return this-\>sucManh + khac.sucManh;
+return this-\>power + diff.power;
 
 }
 
 };
 
-void bacSiKiemTra(Robot r) {
+void doctorCheck(Robot r) {
 
-_// Because it is a friend, this function can access the private variable 'sucManh' without an error!_
+_// Because it is a friend, this function can access the private variable 'power' without an error!_
 
-std::cout \<\< "Robot power: " \<\< r.sucManh;
+std::cout \<\< "Robot power: " \<\< r.power;
 
 }
 
@@ -272,7 +272,7 @@ PrintProtected(); // VALID (remains protected)
 
 }; _// ==================== PRIVATE INHERITANCE ====================_
 
-class childPrivate : private {
+class childPrivate : private Parent {
 
 public:
 
@@ -489,11 +489,11 @@ _// 1. Destructor: Without this, a memory leak occurs immediately!_
 _// 2. Copy Constructor: Ensures a completely new, independent memory
 block is created when copying to a new object_
 
-rowArr(const rowArr& nguon) {
+rowArr(const rowArr& source) {
 
 ptr = new int[100];
 
-_// Copy each element from nguon.ptr to ptr..._
+_// Copy each element from source.ptr to ptr..._
 
 }
 
@@ -503,29 +503,29 @@ Even though we previously decided to skip public inheritance, there is an incred
 
 Without the `virtual` keyword, C++ calls a function based on the **pointer's data type** at compile-time, rather than looking at the **actual object** at runtime.
 
-class ConVat {
+class animal {
 public:
-virtual void keu() {
+virtual void sound() {
 std::cout << "Generic sound...\n";
 }
 
-    virtual ~ConVat() = default;
+    virtual ~animal() = default;
 
 };
 
-class ConMeo : public ConVat {
+class cat : public animal {
 
 public:
 
-void keu() override { std::cout << "Meow Meow!\n"; } // override to replace the parent function
+void sound() override { std::cout << "Meow Meow!\n"; } // override to replace the parent function
 
 };
 
 int main() {
 
-ConVat\* v = new ConMeo(); // Pointer of type ConVat holding a ConMeo object
+animal\* v = new cat(); // Pointer of type animal holding a cat object
 
-v->keu(); // Result: "Meow Meow!" thanks to the virtual keyword!
+v->sound(); // Result: "Meow Meow!" thanks to the virtual keyword!
 
 // (Without 'virtual' in the parent class, it would print "Generic sound...")
 
