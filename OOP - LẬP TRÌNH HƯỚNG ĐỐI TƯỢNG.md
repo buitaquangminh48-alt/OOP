@@ -8,6 +8,7 @@ Một class luôn gồm 2 thành phần chính:
 - **Hành vi (Methods/Functions)**: Các hàm xử lý, hành động của đối
   tượng.
 
+`
 \#include \<iostream\>
 
 \#include \<string\>
@@ -16,18 +17,17 @@ class Robot {
 
 public: _// Tạm thời để public để bên ngoài truy cập được nhé_
 
-_// 1. Thuộc tính_
+  _// 1. Thuộc tính_
 
-std::string ten;
+  std::string ten;
 
-int pin;
+  int pin;
 
-_// 2. Hành vi_
+  _// 2. Hành vi_
 
-void gioiThieu() {
+  void gioiThieu() {
 
-std::cout \<\< "Toi la " \<\< ten \<\< ", pin con: " \<\< pin \<\<
-"%\n";
+  std::cout \<\< "Toi la " \<\< ten \<\< ", pin con: " \<\< pin \<\<"%\n";
 
 }
 
@@ -35,15 +35,16 @@ std::cout \<\< "Toi la " \<\< ten \<\< ", pin con: " \<\< pin \<\<
 
 int main() {
 
-Robot r1; _// Tạo ra đối tượng r1 từ bản thiết kế Robot_
+  Robot r1; _// Tạo ra đối tượng r1 từ bản thiết kế Robot_
 
-r1.ten = "T-800"; _// Gán dữ liệu_
+  r1.ten = "T-800"; _// Gán dữ liệu_
 
-r1.pin = 100;
+  r1.pin = 100;
 
-r1.gioiThieu(); _// Gọi hàm: "Toi la T-800, pin con: 100%"_
+  r1.gioiThieu(); _// Gọi hàm: "Toi la T-800, pin con: 100%"_
 
 }
+`
 
 ## 🛠️ Chương 2: Constructor (Hàm khởi tạo) và Destructor (Hàm hủy)
 
@@ -51,33 +52,33 @@ Khi bạn viết Robot r1;, làm sao để tự động nạp tên và pin cho n
 lúc vừa sinh ra? Đó là nhiệm vụ của **Constructor**. Còn khi đối tượng
 bị xóa khỏi bộ nhớ, **Destructor** sẽ chạy để dọn dẹp.
 
+`
 class Robot {
 
 public:
 
-std::string ten;
+  std::string ten;
 
-_// CONSTRUCTOR: Trùng tên với Class, không có kiểu trả về, tự chạy khi
-tạo đối tượng_
+  _// CONSTRUCTOR: Trùng tên với Class, không có kiểu trả về, tự chạy khi tạo đối tượng_
 
-Robot(std::string tenMoi) {
+  Robot(std::string tenMoi) {
 
-ten = tenMoi;
+    ten = tenMoi;
 
-std::cout \<\< ten \<\< " đã được bật nguồn!\n";
+    std::cout \<\< ten \<\< " đã được bật nguồn!\n";
 
-}
+  }
 
-_// DESTRUCTOR: Có dấu ~ ở trước, tự chạy khi đối tượng bị hủy (kết thúc
-hàm/chương trình)_
+  _// DESTRUCTOR: Có dấu ~ ở trước, tự chạy khi đối tượng bị hủy (kết thúc hàm/chương trình)_
 
-~Robot() {
+  ~Robot() {
 
-std::cout \<\< ten \<\< " đã bị tắt nguồn và giải phóng!\n";
+    std::cout \<\< ten \<\< " đã bị tắt nguồn và giải phóng!\n";
 
-}
+  }
 
 };
+`
 
 ## 🔒 Chương 3: Tính đóng gói (Encapsulation) & Từ khóa this
 
@@ -90,42 +91,43 @@ dữ liệu).
   tại", dùng để phân biệt khi tên tham số của hàm trùng với tên thuộc
   tính.
 
+`
 class Robot {
 
 private: _// Giấu kín dữ liệu bên trong_
 
-int pin;
+  int pin;
 
 public:
 
-Robot(int pin) {
+  Robot(int pin) {
 
-this-\>pin = pin; _// this-\>pin là thuộc tính private, còn pin là tham
-số truyền vào_
+    this-\>pin = pin; _// this-\>pin là thuộc tính private, còn pin là tham số truyền vào_
 
-}
+  }
 
-_// SETTER: Cho phép sửa pin nhưng có kiểm tra điều kiện_
+  _// SETTER: Cho phép sửa pin nhưng có kiểm tra điều kiện_
 
-void setPin(int pinMoi) {
+  void setPin(int pinMoi) {
 
-if (pinMoi \>= 0 && pinMoi \<= 100) {
+    if (pinMoi \>= 0 && pinMoi \<= 100) {
 
-this-\>pin = pinMoi;
+      this-\>pin = pinMoi;
 
-}
+    }
 
-}
+  }
 
-_// GETTER: Cho phép xem pin chứ không cho sửa trực tiếp_
+  _// GETTER: Cho phép xem pin chứ không cho sửa trực tiếp_
 
-int getPin() {
+  int getPin() {
 
-return this-\>pin;
+    return this-\>pin;
 
-}
+  }
 
 };
+`
 
 ## 👥 Chương 4: Từ khóa static (Thành viên dùng chung)
 
@@ -133,18 +135,18 @@ Thông thường, mỗi con robot có một tên và lượng pin riêng. Nhưng
 muốn đếm **tổng số robot** đang hoạt động trên thế giới, bạn cần một
 biến mà tất cả các đối tượng đều dùng chung. Đó là static.
 
+`
 class Robot {
 
 public:
 
-static int tongSoRobot; _// Biến static: nằm ở class chứ không nằm riêng
-ở từng đối tượng_
+  static int tongSoRobot; _// Biến static: nằm ở class chứ không nằm riêng ở từng đối tượng_
 
-Robot() {
+  Robot() {
 
-tongSoRobot++; _// Cứ tạo 1 con robot thì tăng tổng số lên_
+    tongSoRobot++; _// Cứ tạo 1 con robot thì tăng tổng số lên_
 
-}
+  }
 
 };
 
@@ -154,14 +156,14 @@ int Robot::tongSoRobot = 0;
 
 int main() {
 
-Robot a;
+  Robot a;
 
-Robot b;
+  Robot b;
 
-std::cout \<\< Robot::tongSoRobot; _// In ra 2 (Dùng tên Class:: để gọi
-trực tiếp)_
+  std::cout \<\< Robot::tongSoRobot; _// In ra 2 (Dùng tên Class:: để gọi trực tiếp)_
 
 }
+`
 
 ## 🤝 Chương 5: Bạn thân (friend) và Định nghĩa chồng toán tử (Operator Overloading)
 
@@ -172,37 +174,37 @@ trực tiếp)_
   cộng nhau (r1 + r2). C++ cho phép bạn tự định nghĩa phép toán này sẽ
   làm gì.
 
+`
 class Robot {
 
 private:
 
-int sucManh = 50;
+  int sucManh = 50;
 
 public:
 
-_// Khai báo hàm "Bác Sĩ" là bạn thân của Robot_
+  _// Khai báo hàm "Bác Sĩ" là bạn thân của Robot_
 
-friend void bacSiKiemTra(Robot r);
+  friend void bacSiKiemTra(Robot r);
 
-_// Định nghĩa phép cộng (+): Khi 2 robot cộng nhau, cộng sức mạnh của
-chúng lại_
+  _// Định nghĩa phép cộng (+): Khi 2 robot cộng nhau, cộng sức mạnh của chúng lại_
 
-int operator+(const Robot& khac) {
+  int operator+(const Robot& khac) {
 
-return this-\>sucManh + khac.sucManh;
+    return this-\>sucManh + khac.sucManh;
 
-}
+  }
 
 };
 
 void bacSiKiemTra(Robot r) {
 
-_// Vì là friend, hàm này sờ được vào biến private 'sucManh' mà không bị
-báo lỗi!_
+  _// Vì là friend, hàm này sờ được vào biến private 'sucManh' mà không bị báo lỗi!_
 
-std::cout \<\< "Sức mạnh robot: " \<\< r.sucManh;
+  std::cout \<\< "Sức mạnh robot: " \<\< r.sucManh;
 
 }
+`
 
 🧬 Chương 6: Các kiểu kế thừa public, private và protected
 
@@ -273,17 +275,18 @@ thành bí mật riêng tư của con.
 
 ## Ví dụ Code so sánh trực tiếp
 
+`
 \#include \<iostream\>
 
 class Cha {
 
 public:
 
-void XuatPublic() { std::cout \<\< "Gốc Public\n"; }
+  void XuatPublic() { std::cout \<\< "Gốc Public\n"; }
 
 protected:
 
-void XuatProtected() { std::cout \<\< "Gốc Protected\n"; }
+  void XuatProtected() { std::cout \<\< "Gốc Protected\n"; }
 
 };
 
@@ -293,13 +296,13 @@ class ConPublic : public Cha {
 
 public:
 
-void ThuNghiem() {
+  void ThuNghiem() {
 
-XuatPublic(); _// HỢP LỆ (vẫn là public)_
+    XuatPublic(); _// HỢP LỆ (vẫn là public)_
 
-XuatProtected(); _// HỢP LỆ (vẫn là protected)_
+    XuatProtected(); _// HỢP LỆ (vẫn là protected)_
 
-}
+  }
 
 };
 
@@ -309,43 +312,40 @@ class ConPrivate : private Cha {
 
 public:
 
-void ThuNghiem() {
+  void ThuNghiem() {
 
-XuatPublic(); _// HỢP LỆ (truy cập nội bộ được, giờ nó thành private của
-Con)_
+    XuatPublic(); _// HỢP LỆ (truy cập nội bộ được, giờ nó thành private của Con)_
 
-XuatProtected(); _// HỢP LỆ (truy cập nội bộ được, giờ nó thành private
-của Con)_
+    XuatProtected(); _// HỢP LỆ (truy cập nội bộ được, giờ nó thành private của Con)_
 
-}
+  }
 
 };
 
 class Chau : public ConPrivate {
 
-void ThuNghiemChau() {
+  void ThuNghiemChau() {
 
-_// XuatPublic(); // LỖI! Vì ConPrivate đã đổi nó thành private, lớp
-Chau không sờ vào được nữa._
+    _// XuatPublic(); // LỖI! Vì ConPrivate đã đổi nó thành private, lớp Chau không sờ vào được nữa._
 
-}
+  }
 
 };
 
 int main() {
 
-ConPublic objPublic;
+  ConPublic objPublic;
 
-objPublic.XuatPublic(); _// HỢP LỆ! Gọi bình thường từ hàm main._
+  objPublic.XuatPublic(); _// HỢP LỆ! Gọi bình thường từ hàm main._
 
-ConPrivate objPrivate;
+  ConPrivate objPrivate;
 
-_// objPrivate.XuatPublic(); // LỖI BIÊN DỊCH! XuatPublic bây giờ là
-private đối với objPrivate._
+  _// objPrivate.XuatPublic(); // LỖI BIÊN DỊCH! XuatPublic bây giờ là private đối với objPrivate._
 
-return 0;
+  return 0;
 
 }
+`
 
 3\. Kế thừa Protected – Quan hệ “IS-IMPLEMENTED-IN-TERMS-OF”
 
@@ -378,13 +378,14 @@ các thế hệ con cháu mai sau.
 
 ## Ví dụ Code trực quan
 
+`
 \#include \<iostream\>
 
 class Ong {
 
 public:
 
-void DiSanOng() { std::cout \<\< "Di san của Ong\n"; }
+  void DiSanOng() { std::cout \<\< "Di san của Ong\n"; }
 
 };
 
@@ -392,15 +393,15 @@ _// ==================== KẾ THỪA PROTECTED ====================_
 
 class ChaProtected : protected Ong {
 
-_// DiSanOng() từ public đã biến thành PROTECTED ở đây_
+  _// DiSanOng() từ public đã biến thành PROTECTED ở đây_
 
 public:
 
-void TestCha() {
+  void TestCha() {
 
-DiSanOng(); _// HỢP LỆ: Cha vẫn dùng được tài sản của Ong_
+    DiSanOng(); _// HỢP LỆ: Cha vẫn dùng được tài sản của Ong_
 
-}
+  }
 
 };
 
@@ -410,29 +411,28 @@ class Chau : public ChaProtected {
 
 public:
 
-void TestChau() {
+  void TestChau() {
 
-DiSanOng(); _// HỢP LỆ! Vì ở lớp Cha nó là protected, nên Cháu vẫn được
-xài._
+    DiSanOng(); _// HỢP LỆ! Vì ở lớp Cha nó là protected, nên Cháu vẫn được xài._
 
-_// (Nếu ChaProtected mà dùng kế thừa private, dòng này sẽ BỊ LỖI)_
+    _// (Nếu ChaProtected mà dùng kế thừa private, dòng này sẽ BỊ LỖI)_
 
-}
+  }
 
 };
 
 int main() {
 
-ChaProtected objCha;
+  ChaProtected objCha;
 
-_// objCha.DiSanOng();_
+  _// objCha.DiSanOng();_
 
-_// LỖI BIÊN DỊCH! Bên ngoài hàm main không được phép truy cập hàm
-protected._
+  _// LỖI BIÊN DỊCH! Bên ngoài hàm main không được phép truy cập hàm protected._
 
-return 0;
+  return 0;
 
 }
+`
 
 ## Bảng so sánh tổng hợp cả 3 loại kế thừa
 
@@ -453,26 +453,27 @@ Từ khóa const đặt ở cuối một hàm thành viên nhằm cam kết: _"H
 đọc dữ liệu chứ tuyệt đối không chỉnh sửa bất kỳ thuộc tính nào của
 Object."_
 
+`
 class TaiKhoan {
 
 private:
 
-int balance = 5000;
+  int balance = 5000;
 
 public:
 
-_// Hàm const: bảo vệ dữ liệu không bị sửa đổi nhầm_
+  _// Hàm const: bảo vệ dữ liệu không bị sửa đổi nhầm_
 
-int xembalance() const {
+  int xembalance() const {
 
-_// balance = 0; // LỖI BIÊN DỊCH ngay! Vì hàm const không cho phép sửa
-biến._
+    _// balance = 0; // LỖI BIÊN DỊCH ngay! Vì hàm const không cho phép sửa biến._
 
-return balance;
+    return balance;
 
-}
+  }
 
 };
+`
 
 ## ⚙️ Chương 8. Danh sách khởi tạo (Constructor Initialization List)
 
@@ -485,25 +486,27 @@ sau constructor).
   là cách duy nhất để khởi tạo các thuộc tính kiểu const hoặc kiểu Tham
   chiếu (&).
 
+`
 class ViDu {
 
 private:
 
-const int id; _// Biến hằng số trong class_
+  const int id; _// Biến hằng số trong class_
 
-std::string ten;
+  std::string ten;
 
 public:
 
-_// Cách viết CHUẨN C++: Dùng danh sách khởi tạo_
+  _// Cách viết CHUẨN C++: Dùng danh sách khởi tạo_
 
-ViDu(int idMoi, std::string tenMoi) : id(idMoi), ten(tenMoi) {
+  ViDu(int idMoi, std::string tenMoi) : id(idMoi), ten(tenMoi) {
 
-_// Thân hàm trống không cần viết gì thêm_
+    _// Thân hàm trống không cần viết gì thêm_
 
-}
+  }
 
 };
+`
 
 ## 💾 Chương 9. Quản lý bộ nhớ: Bộ ba thần thánh (Rule of Three)
 
@@ -522,32 +525,33 @@ và lỗi sập chương trình (Crash):
 3.  **Copy Assignment Operator (Toán tử gán sao chép)**: Xử lý khi gán 2
     object có con trỏ cho nhau (a = b).
 
+`
 class rowArr {
 
 private:
 
-int\* ptr;
+  int\* ptr;
 
 public:
 
-rowArr() { ptr = new int\[100\]; } _// Cấp phát vùng nhớ_
+  rowArr() { ptr = new int\[100\]; } _// Cấp phát vùng nhớ_
 
-_// 1. Destructor: Không có cái này là bị rò rỉ bộ nhớ ngay!_
+  _// 1. Destructor: Không có cái này là bị rò rỉ bộ nhớ ngay!_
 
-~rowArr() { delete\[\] ptr; }
+  ~rowArr() { delete\[\] ptr; }
 
-_// 2. Copy Constructor: Đảm bảo khi copy sang object mới, tạo hẳn vùng
-nhớ mới độc lập_
+  _// 2. Copy Constructor: Đảm bảo khi copy sang object mới, tạo hẳn vùng nhớ mới độc lập_
 
-rowArr(const rowArr& nguon) {
+  rowArr(const rowArr& nguon) {
 
-ptr = new int\[100\];
+    ptr = new int\[100\];
 
-_// Copy từng phần tử từ nguon.ptr sang ptr..._
+    _// Copy từng phần tử từ nguon.ptr sang ptr..._
 
-}
+  }
 
 };
+`
 
 ## 🪄 Chương 10. Hàm ảo (virtual) và Đa hình (Polymorphism)
 
@@ -559,11 +563,12 @@ Nếu không có từ khóa virtual, C++ sẽ gọi hàm dựa trên **kiểu d�
 con trỏ** lúc biên dịch, chứ không nhìn vào **đối tượng thực tế** lúc
 chạy.
 
+`
 class ConVat {
 
 public:
 
-virtual void keu() { std::cout \<\< "Tiếng kêu chung chung...\n"; }
+  virtual void keu() { std::cout \<\< "Tiếng kêu chung chung...\n"; }
 
 };
 
@@ -571,21 +576,19 @@ class ConMeo : public ConVat {
 
 public:
 
-void keu() override { std::cout \<\< "Meo Meo!\n"; } _// override để đè
-lên hàm cha_
+  void keu() override { std::cout \<\< "Meo Meo!\n"; } _// override để đè lên hàm cha_
 
 };
 
 int main() {
 
-ConVat\* v = new ConMeo(); _// Con trỏ kiểu ConVat nhưng giữ đối tượng
-ConMeo_
+  ConVat\* v = new ConMeo(); _// Con trỏ kiểu ConVat nhưng giữ đối tượng ConMeo_
 
-v-\>keu(); _// Kết quả: "Meo Meo!" nhờ có từ khóa virtual!_
+  v-\>keu(); _// Kết quả: "Meo Meo!" nhờ có từ khóa virtual!_
 
-_// (Nếu không có 'virtual' ở lớp cha, nó sẽ in ra "Tiếng kêu chung
-chung...")_
+  _// (Nếu không có 'virtual' ở lớp cha, nó sẽ in ra "Tiếng kêu chung chung...")_
 
-delete v;
+  delete v;
 
 }
+`
