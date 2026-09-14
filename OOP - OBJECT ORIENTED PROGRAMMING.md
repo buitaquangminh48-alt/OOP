@@ -1,6 +1,3 @@
-Không có gì phải ngại cả, bản tiếng Anh chuẩn chỉnh cho GitHub của bạn đây!
-
-```markdown
 # 📦 Chapter 1: Basic Structure (Attributes and Behaviors)
 
 A class always consists of two main components:
