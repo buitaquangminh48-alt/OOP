@@ -8,7 +8,7 @@ Một class luôn gồm 2 thành phần chính:
 - **Hành vi (Methods/Functions)**: Các hàm xử lý, hành động của đối
   tượng.
 
-``` text
+``` code
 \#include \<iostream\>
 
 \#include \<string\>
@@ -27,9 +27,9 @@ public: _// Tạm thời để public để bên ngoài truy cập được nhé
 
   void gioiThieu() {
 
-  std::cout \<\< "Toi la " \<\< ten \<\< ", pin con: " \<\< pin \<\<"%\n";
+    std::cout \<\< "Toi la " \<\< ten \<\< ", pin con: " \<\< pin \<\<"%\n";
 
-}
+  }
 
 };
 
@@ -52,7 +52,7 @@ Khi bạn viết Robot r1;, làm sao để tự động nạp tên và pin cho n
 lúc vừa sinh ra? Đó là nhiệm vụ của **Constructor**. Còn khi đối tượng
 bị xóa khỏi bộ nhớ, **Destructor** sẽ chạy để dọn dẹp.
 
-`
+``` text
 class Robot {
 
 public:
@@ -78,7 +78,7 @@ public:
   }
 
 };
-`
+```
 
 ## 🔒 Chương 3: Tính đóng gói (Encapsulation) & Từ khóa this
 
@@ -91,7 +91,7 @@ dữ liệu).
   tại", dùng để phân biệt khi tên tham số của hàm trùng với tên thuộc
   tính.
 
-`
+``` text
 class Robot {
 
 private: _// Giấu kín dữ liệu bên trong_
@@ -127,7 +127,7 @@ public:
   }
 
 };
-`
+```
 
 ## 👥 Chương 4: Từ khóa static (Thành viên dùng chung)
 
@@ -135,7 +135,7 @@ Thông thường, mỗi con robot có một tên và lượng pin riêng. Nhưng
 muốn đếm **tổng số robot** đang hoạt động trên thế giới, bạn cần một
 biến mà tất cả các đối tượng đều dùng chung. Đó là static.
 
-`
+``` text
 class Robot {
 
 public:
@@ -163,7 +163,7 @@ int main() {
   std::cout \<\< Robot::tongSoRobot; _// In ra 2 (Dùng tên Class:: để gọi trực tiếp)_
 
 }
-`
+```
 
 ## 🤝 Chương 5: Bạn thân (friend) và Định nghĩa chồng toán tử (Operator Overloading)
 
@@ -174,7 +174,7 @@ int main() {
   cộng nhau (r1 + r2). C++ cho phép bạn tự định nghĩa phép toán này sẽ
   làm gì.
 
-`
+``` text
 class Robot {
 
 private:
@@ -204,7 +204,7 @@ void bacSiKiemTra(Robot r) {
   std::cout \<\< "Sức mạnh robot: " \<\< r.sucManh;
 
 }
-`
+```
 
 🧬 Chương 6: Các kiểu kế thừa public, private và protected
 
@@ -275,7 +275,7 @@ thành bí mật riêng tư của con.
 
 ## Ví dụ Code so sánh trực tiếp
 
-`
+``` text
 \#include \<iostream\>
 
 class Cha {
@@ -345,7 +345,7 @@ int main() {
   return 0;
 
 }
-`
+```
 
 3\. Kế thừa Protected – Quan hệ “IS-IMPLEMENTED-IN-TERMS-OF”
 
