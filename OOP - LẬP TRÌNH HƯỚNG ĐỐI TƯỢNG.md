@@ -8,7 +8,7 @@ Một class luôn gồm 2 thành phần chính:
 - **Hành vi (Methods/Functions)**: Các hàm xử lý, hành động của đối
   tượng.
 
-`
+``` text
 \#include \<iostream\>
 
 \#include \<string\>
@@ -44,7 +44,7 @@ int main() {
   r1.gioiThieu(); _// Gọi hàm: "Toi la T-800, pin con: 100%"_
 
 }
-`
+```
 
 ## 🛠️ Chương 2: Constructor (Hàm khởi tạo) và Destructor (Hàm hủy)
 
